@@ -13,12 +13,14 @@ export default siteConfig({
   author: 'Julia Maheoi',
 
   // open graph metadata (optional)
-  description: 'Juju Maheoi: Xamanismo e Oráculo online. Expanda sua consciência, se conectando à natureza e aprendendo a se manter em equilíbrio.',
+  description:
+    'Julia Maheoi: Xamanismo e Oráculo online. Integre-se à natureza e aprenda a se manter em equilíbrio meio às mudanças.',
 
   // social usernames (optional)
   // twitter: 'transitive_bs',
   // github: 'juliaramosguedes',
-  // linkedin: 'fisch2',
+  linkedin: 'juliaramosguedes',
+  instagram: 'juliamaheoi',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
   youtube: '@juliamaheoi', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`
