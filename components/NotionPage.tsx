@@ -19,6 +19,7 @@ import { getCanonicalPageUrl, mapPageUrl } from '@/lib/map-page-url'
 import { searchNotion } from '@/lib/search-notion'
 import { useDarkMode } from '@/lib/use-dark-mode'
 
+import { Calendar } from './Calendar'
 import { Footer } from './Footer'
 import { Loading } from './Loading'
 import { NotionPageHeader } from './NotionPageHeader'
@@ -26,7 +27,6 @@ import { Page404 } from './Page404'
 import { PageAside } from './PageAside'
 import { PageHead } from './PageHead'
 import styles from './styles.module.css'
-import {Calendar} from "@/components/Calendar";
 
 // -----------------------------------------------------------------------------
 // dynamic imports for optional components
@@ -114,14 +114,38 @@ const propertyLastEditedTimeValue = (
   return defaultFn()
 }
 
-const propertyCheckboxValue = (
-  { schema },
+const propertyLabelValue = (
+  { schema, data },
   defaultFn: () => React.ReactNode
-) => (
-  <div style={{ display: 'flex', gap: '4px' }}>
-    {schema?.name} {defaultFn()}
-  </div>
-)
+) => {
+  const value = defaultFn()
+
+  if (schema?.type !== 'number') {
+    return (
+      <div style={{ display: 'flex', gap: '4px' }}>
+        {schema?.name}: {value}
+      </div>
+    )
+  }
+
+  const number = Number(data[0]?.[0])
+
+  const isMoney =
+    schema?.name.toLowerCase() === 'preço' &&
+    Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(number)
+  const isDuration =
+    schema?.name.toLowerCase() === 'duração' && `${number} minutos`
+  const parsedNumber = isMoney || isDuration || number
+
+  return (
+    <div style={{ display: 'flex', gap: '4px' }}>
+      {schema?.name}: {parsedNumber}
+    </div>
+  )
+}
 
 const propertyDateValue = (
   { data, schema, pageHeader },
@@ -174,7 +198,9 @@ export const NotionPage: React.FC<types.PageProps> = ({
       propertyLastEditedTimeValue,
       propertyTextValue,
       propertyDateValue,
-      propertyCheckboxValue
+      propertyCheckboxValue: propertyLabelValue,
+      propertySelectValue: propertyLabelValue,
+      propertyNumberValue: propertyLabelValue
     }),
     []
   )
