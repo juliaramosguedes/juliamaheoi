@@ -110,8 +110,16 @@
   color: #ff0000;
 }
 
+.instagram:hover {
+  color: #aa2cc0;
+}
+
 .linkedin:hover {
   color: #0077b5;
+}
+
+.whatsapp:hover {
+  color: #25D366;
 }
 
 .newsletter:hover {

@@ -107,6 +107,20 @@
   border-color: #FF0000;
 }
 
+.instagram .actionBgPane {
+  background: #aa2cc0;
+}
+.instagram:hover {
+  border-color: #aa2cc0;
+}
+
+.whatsapp .actionBgPane {
+  background: #25D366;
+}
+.whatsapp:hover {
+  border-color: #25D366;
+}
+
 .medium .actionBgPane {
   background: #00ab6c;
 }

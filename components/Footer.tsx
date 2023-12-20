@@ -2,9 +2,11 @@ import * as React from 'react'
 
 import { FaEnvelopeOpenText } from '@react-icons/all-files/fa/FaEnvelopeOpenText'
 import { FaGithub } from '@react-icons/all-files/fa/FaGithub'
-import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin'
+import { FaInstagram } from '@react-icons/all-files/fa/FaInstagram'
+import { FaLinkedinIn } from '@react-icons/all-files/fa/FaLinkedinIn'
 import { FaMastodon } from '@react-icons/all-files/fa/FaMastodon'
 import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter'
+import { FaWhatsapp } from '@react-icons/all-files/fa/FaWhatsapp'
 import { FaYoutube } from '@react-icons/all-files/fa/FaYoutube'
 import { FaZhihu } from '@react-icons/all-files/fa/FaZhihu'
 import { IoMoonSharp } from '@react-icons/all-files/io5/IoMoonSharp'
@@ -36,7 +38,9 @@ export const FooterImpl: React.FC = () => {
 
   return (
     <footer className={styles.footer}>
-      <div className={styles.copyright}>Copyright {currentYear} {config.author}</div>
+      <div className={styles.copyright}>
+        Copyright {currentYear} {config.author}
+      </div>
 
       <div className={styles.settings}>
         {hasMounted && (
@@ -100,6 +104,30 @@ export const FooterImpl: React.FC = () => {
           </a>
         )}
 
+        {config.youtube && (
+          <a
+            className={styles.youtube}
+            href={`https://www.youtube.com/${config.youtube}`}
+            title={`YouTube ${config.author}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaYoutube />
+          </a>
+        )}
+
+        {config.instagram && (
+          <a
+            className={styles.instagram}
+            href={`https://www.instagram.com/${config.instagram}`}
+            title={`Instagram ${config.author}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaInstagram />
+          </a>
+        )}
+
         {config.linkedin && (
           <a
             className={styles.linkedin}
@@ -108,7 +136,19 @@ export const FooterImpl: React.FC = () => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <FaLinkedin />
+            <FaLinkedinIn />
+          </a>
+        )}
+
+        {config.whatsapp && (
+          <a
+            className={styles.whatsapp}
+            href={`https://wa.me/${config.whatsapp}`}
+            title={`Whatsapp ${config.author}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <FaWhatsapp />
           </a>
         )}
 
@@ -121,18 +161,6 @@ export const FooterImpl: React.FC = () => {
             rel='noopener noreferrer'
           >
             <FaEnvelopeOpenText />
-          </a>
-        )}
-
-        {config.youtube && (
-          <a
-            className={styles.youtube}
-            href={`https://www.youtube.com/${config.youtube}`}
-            title={`YouTube ${config.author}`}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            <FaYoutube />
           </a>
         )}
       </div>
