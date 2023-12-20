@@ -1,4 +1,4 @@
-import { getAllPagesInSpace, uuidToId, getPageProperty } from 'notion-utils'
+import { getAllPagesInSpace, getPageProperty, uuidToId } from 'notion-utils'
 import pMemoize from 'p-memoize'
 
 import * as config from './config'
@@ -29,7 +29,7 @@ async function getAllPagesImpl(
   rootNotionPageId: string,
   rootNotionSpaceId: string
 ): Promise<Partial<types.SiteMap>> {
-  const getPage = async (pageId: string, ...args) => {
+  const getPage = async (pageId: string, ...args: any[]) => {
     console.log('\nnotion getPage', uuidToId(pageId))
     return notion.getPage(pageId, ...args)
   }
@@ -48,7 +48,13 @@ async function getAllPagesImpl(
       }
 
       const block = recordMap.block[pageId]?.value
-      if (!(getPageProperty<boolean|null>('Public', block, recordMap) ?? true)) {
+      const isNotPublic = !(
+        getPageProperty<boolean | null>('Public', block, recordMap) ?? true
+      )
+      const isNotArchived = !(
+        getPageProperty<boolean | null>('Arquivado', block, recordMap) ?? true
+      )
+      if (isNotPublic || isNotArchived) {
         return map
       }
 

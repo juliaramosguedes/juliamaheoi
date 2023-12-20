@@ -114,6 +114,15 @@ const propertyLastEditedTimeValue = (
   return defaultFn()
 }
 
+const propertyCheckboxValue = (
+  { schema },
+  defaultFn: () => React.ReactNode
+) => (
+  <div style={{ display: 'flex', gap: '4px' }}>
+    {schema?.name} {defaultFn()}
+  </div>
+)
+
 const propertyDateValue = (
   { data, schema, pageHeader },
   defaultFn: () => React.ReactNode
@@ -164,7 +173,8 @@ export const NotionPage: React.FC<types.PageProps> = ({
       Header: NotionPageHeader,
       propertyLastEditedTimeValue,
       propertyTextValue,
-      propertyDateValue
+      propertyDateValue,
+      propertyCheckboxValue
     }),
     []
   )
@@ -209,9 +219,16 @@ export const NotionPage: React.FC<types.PageProps> = ({
   }
 
   const title = getBlockTitle(block, recordMap) || site.name
-  const isCalendarPage = title === "Agenda"
+  const isCalendarPage = title === 'Agenda'
 
-const footer = isCalendarPage ? <><Calendar /><Footer /></> : <Footer />
+  const footer = isCalendarPage ? (
+    <>
+      <Calendar />
+      <Footer />
+    </>
+  ) : (
+    <Footer />
+  )
 
   console.log('notion page', {
     isDev: config.isDev,
