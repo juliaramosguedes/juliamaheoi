@@ -15,7 +15,7 @@ const interBoldFontP = fetch(
 ).then((res) => res.arrayBuffer())
 
 export const config = {
-  runtime: 'experimental-edge'
+  runtime: 'edge'
 }
 
 export default async function OGImage(req: NextRequest) {
@@ -36,7 +36,6 @@ export default async function OGImage(req: NextRequest) {
     return new Response(pageInfoRes.statusText, { status: pageInfoRes.status })
   }
   const pageInfo: NotionPageInfo = await pageInfoRes.json()
-  console.log(pageInfo)
 
   const [interRegularFont, interBoldFont] = await Promise.all([
     interRegularFontP,
@@ -62,6 +61,7 @@ export default async function OGImage(req: NextRequest) {
         {pageInfo.image && (
           <img
             src={pageInfo.image}
+            alt={pageInfo.title}
             style={{
               position: 'absolute',
               width: '100%',
@@ -147,6 +147,7 @@ export default async function OGImage(req: NextRequest) {
           >
             <img
               src={pageInfo.authorImage}
+              alt={pageInfo.author}
               style={{
                 width: '100%',
                 height: '100%'
