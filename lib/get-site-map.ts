@@ -48,13 +48,9 @@ async function getAllPagesImpl(
       }
 
       const block = recordMap.block[pageId]?.value
-      const isNotPublic = !(
-        getPageProperty<boolean | null>('Public', block, recordMap) ?? true
-      )
-      const isNotArchived = !(
-        getPageProperty<boolean | null>('Arquivado', block, recordMap) ?? true
-      )
-      if (isNotPublic || isNotArchived) {
+      if (
+        !(getPageProperty<boolean | null>('Public', block, recordMap) ?? true)
+      ) {
         return map
       }
 
