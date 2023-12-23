@@ -54,9 +54,10 @@
 }
 
 .notion-gallery-grid {
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fill, fit-content(100%));
   grid-gap: 6vmin;
   gap: 6vmin;
+  grid-auto-rows: auto;
 }
 
 .notion-gallery-grid .notion-page-icon-inline {
