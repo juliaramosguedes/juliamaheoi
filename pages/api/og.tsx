@@ -56,8 +56,7 @@ export default async function handler(req: NextRequest) {
             style={{
               position: 'absolute',
               width: '100%',
-              height: '100%',
-              objectFit: 'cover'
+              height: '100%'
             }}
           />
         )}
