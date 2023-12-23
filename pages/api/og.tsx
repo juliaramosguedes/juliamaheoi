@@ -20,10 +20,6 @@ export default async function handler(req: NextRequest) {
     new URL('../../public/fonts/Inter-Regular.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer())
 
-  const interBoldFont = await fetch(
-    new URL('../../public/fonts/Inter-SemiBold.ttf', import.meta.url)
-  ).then((res) => res.arrayBuffer())
-
   const pageInfoRes = await fetch(`${apiHost}${api.getNotionPageInfo}`, {
     method: 'POST',
     body: JSON.stringify({ pageId }),
@@ -61,19 +57,6 @@ export default async function handler(req: NextRequest) {
               width: '100%',
               height: '100%',
               objectFit: 'cover'
-              // TODO: satori doesn't support background-size: cover and seems to
-              // have inconsistent support for filter + transform to get rid of the
-              // blurred edges. For now, we'll go without a blur filter on the
-              // background, but Satori is still very new, so hopefully we can re-add
-              // the blur soon.
-
-              // backgroundImage: pageInfo.image
-              //   ? `url(${pageInfo.image})`
-              //   : undefined,
-              // backgroundSize: '100% 100%'
-              // TODO: pageInfo.imageObjectPosition
-              // filter: 'blur(8px)'
-              // transform: 'scale(1.05)'
             }}
           />
         )}
@@ -110,7 +93,7 @@ export default async function handler(req: NextRequest) {
             <div
               style={{
                 fontSize: 70,
-                fontWeight: 700,
+                fontWeight: 'bold',
                 fontFamily: 'Inter'
               }}
             >
@@ -145,7 +128,6 @@ export default async function handler(req: NextRequest) {
               style={{
                 width: '100%',
                 height: '100%'
-                // transform: 'scale(1.04)'
               }}
             />
           </div>
@@ -161,12 +143,6 @@ export default async function handler(req: NextRequest) {
           data: interRegularFont,
           style: 'normal',
           weight: 400
-        },
-        {
-          name: 'Inter',
-          data: interBoldFont,
-          style: 'normal',
-          weight: 700
         }
       ]
     }
