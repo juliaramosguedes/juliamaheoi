@@ -46,7 +46,8 @@ export default async function handler(req: NextRequest) {
           alignItems: 'center',
           justifyContent: 'center',
           fontFamily: '"Inter", sans-serif',
-          color: 'black'
+          color: 'black',
+          overflow: 'hidden'
         }}
       >
         {pageInfo.image && (
@@ -56,8 +57,9 @@ export default async function handler(req: NextRequest) {
             style={{
               position: 'absolute',
               width: '100%',
-              height: '100%',
-              objectFit: 'cover'
+              height: 'auto',
+              objectFit: 'cover',
+              objectPosition: 'center'
             }}
           />
         )}
@@ -120,15 +122,19 @@ export default async function handler(req: NextRequest) {
               display: 'flex',
               borderRadius: '50%',
               border: '4px solid #fff',
-              zIndex: '5'
+              zIndex: '5',
+              overflow: 'hidden'
             }}
           >
             <img
               src={pageInfo.authorImage}
               alt={pageInfo.author}
               style={{
+                position: 'absolute',
                 width: '100%',
-                height: '100%'
+                height: 'auto',
+                objectFit: 'cover',
+                objectPosition: 'center'
               }}
             />
           </div>

@@ -56,7 +56,3 @@ body {
 ::-webkit-scrollbar-track {
     background-color: var(--bg-color);
 }
-
-img {
-  object-fit: cover !important;
-}
