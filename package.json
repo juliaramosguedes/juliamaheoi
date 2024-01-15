@@ -31,6 +31,7 @@
     "@keyvhq/redis": "^2.1.0",
     "@react-icons/all-files": "^4.1.0",
     "@vercel/og": "^0.6.1",
+    "@vercel/speed-insights": "^1.0.3",
     "classnames": "^2.3.2",
     "date-fns": "^3.0.6",
     "expiry-map": "^2.0.0",
